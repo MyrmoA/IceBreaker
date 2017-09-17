@@ -1,83 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    android:gravity="top|center"
-    android:orientation="vertical"
-    android:weightSum="1"> <!--prevent edittext autofocus when launch-->
 
+    android:orientation="vertical"> <!--prevent edittext autofocus when launch-->
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:paddingTop="20dp"
-        app:srcCompat="@drawable/icebreaker_logo" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/visible"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_weight="0.05">
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/user_textbox"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0.05"
-            android:background="@color/light_blue"
-            android:hint="Username"
-            android:inputType="text" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_height="120dp"
+            android:layout_margin="20dp"
+            android:layout_weight="8.79"
+            app:srcCompat="@drawable/icebreaker_logo" />
 
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/masked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.05">
+        <android.support.design.widget.TextInputLayout
 
-        <EditText
-            android:id="@+id/password_textbox"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/user_textbox"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+
+                android:background="@color/light_blue"
+                android:hint="Username"
+                android:inputType="textVisiblePassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="15.20">
+
+
+            <EditText
+                android:id="@+id/password_textbox"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+
+                android:background="@color/light_blue"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:backgroundTint="@color/orange"
+            android:text="Login" />
+
+        <TextView
+            android:id="@+id/register_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="0.05"
-            android:background="@color/light_blue"
-            android:ems="10"
-            android:hint="Password"
-            android:inputType="textPassword" />
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="5dp"
+            android:contextClickable="true"
+            android:gravity="right"
+            android:text="@string/register"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp"
+            android:visibility="visible" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/login_button"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/orange"
-        android:text="Login" />
-
-    <TextView
-        android:id="@+id/register_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:contextClickable="true"
-        android:gravity="right"
-        android:text="@string/register"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="16sp"
-        android:visibility="visible" />
+    </RelativeLayout>
 
 
-</LinearLayout>
+

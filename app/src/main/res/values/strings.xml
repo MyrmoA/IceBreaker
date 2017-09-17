@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">icebreaker</string>
     <string name="register"><u>Need an Account ?</u></string>
+    <string name="title_activity_home_page">HomePage</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
