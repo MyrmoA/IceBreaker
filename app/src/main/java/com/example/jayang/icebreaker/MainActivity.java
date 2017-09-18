@@ -30,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),HomePage.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }
