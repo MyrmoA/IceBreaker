@@ -16,6 +16,8 @@ public class RegisterPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         button = (Button)findViewById(R.id.nextButton);
+        mToolbar = (Toolbar)findViewById(R.id.toolbar);
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
 
 
 

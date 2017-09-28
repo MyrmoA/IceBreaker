@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 public class Register2 extends AppCompatActivity {
     Button mButton ;
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,8 @@ public class Register2 extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
 
         mButton =  (Button)findViewById(R.id.signup);
+        mToolbar =(Toolbar)findViewById(R.id.toolbar2);
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,6 +35,7 @@ public class Register2 extends AppCompatActivity {
                 alertDialogBuilder.setMessage("Enter email verification code we send to your registered email");
 
                 EditText editText = new EditText(Register2.this);
+
                 alertDialogBuilder.setView(editText);
 
 
