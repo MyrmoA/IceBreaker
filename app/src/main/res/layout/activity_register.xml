@@ -24,7 +24,7 @@
             android:soundEffectsEnabled="true"
 
             android:theme="?attr/actionBarTheme"
-            app:title="Sign-Up"
+            app:title="Sign-Up(Step 1/2)"
             app:titleTextColor="@color/white" />
 
         <android.support.design.widget.TextInputLayout
