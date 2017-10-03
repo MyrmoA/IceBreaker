@@ -23,22 +23,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register2 extends AppCompatActivity {
     Button mButton ; // signup button
     Toolbar mToolbar;
     EditText email,password,cpassword;
-    String  userEmail, userPassword,userCpassword;
+    String  userEmail, userPassword,userCpassword,firstname,lastname,username;
     final String TAG ="IcebreakerApp" ;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference mDatabase;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register2);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
  /*Layout Component*/
         mButton = (Button) findViewById(R.id.signup);
         mToolbar = (Toolbar) findViewById(R.id.toolbar2);
@@ -48,20 +55,9 @@ public class Register2 extends AppCompatActivity {
         cpassword = (EditText) findViewById(R.id.Cpassword_R);
 
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                }
-                // ...
-            }
-        };
+
+
+
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +80,13 @@ public class Register2 extends AppCompatActivity {
        userEmail = email.getText().toString();
        userPassword =password.getText().toString();
        userCpassword = cpassword.getText().toString();
+
+       Bundle extras = getIntent().getExtras();
+       if(extras!=null) {
+           firstname =extras.getString("firstname");
+           lastname = extras.getString("lastname");
+           username = extras.getString("username");
+       }
 
        boolean cancel = false;
        View focusView = null;
@@ -129,14 +132,16 @@ public class Register2 extends AppCompatActivity {
        } else {
            // firebase signup
            hideKeyboard();
-           createAccount(userEmail,userPassword);
+           createAccount(userEmail,userPassword,firstname,lastname,username);
        }
    }
 
     //Firebase auth user signup method createAccount(,);
-    public void createAccount(String email, String password){
-        final ProgressDialog progressDialog = ProgressDialog.show(this,"Icebreaker","Signing-up",true);
-        mAuth.createUserWithEmailAndPassword(email, password)
+    public void createAccount(final String memail, String mpassword, final String mfirstName, final String mlastName,
+                              final String muserName) {
+
+        final ProgressDialog progressDialog = ProgressDialog.show(this, "Icebreaker", "Signing-up", true);
+        mAuth.createUserWithEmailAndPassword(memail, mpassword)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -152,14 +157,34 @@ public class Register2 extends AppCompatActivity {
                             Toast.makeText(Register2.this, task.getException().getMessage(),
                                     Toast.LENGTH_LONG).show();
 
-                        }else {
+                        } else {
                             progressDialog.dismiss();
                             Toast.makeText(Register2.this, "Sign-up success",
                                     Toast.LENGTH_SHORT).show();
+                            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                            String Uid = currentFirebaseUser.getUid();
+
+                            writeNewUser(Uid, muserName, memail,mfirstName,mlastName );
+                            addtoUsernameList(muserName);
                         }
                     }
                 });
     }
+
+    //write userdata info to the firebase user table/documents
+    private void writeNewUser(String userId, String username, String email,String firstname,
+                              String lastname) {
+
+
+        User user = new User(username,email,firstname,lastname);
+
+        mDatabase.child("Users").child(userId).setValue(user);
+    }
+
+    private void addtoUsernameList(String mUsername){
+        mDatabase.child("Usernames").push().setValue(mUsername);
+    }
+
 
     //hide softkeyboard
     private void hideKeyboard(){

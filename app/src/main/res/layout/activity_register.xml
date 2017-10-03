@@ -73,7 +73,7 @@
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="textVisiblePassword"
-                android:singleLine="true" />
+                android:maxLines="1" />
         </android.support.design.widget.TextInputLayout>
 
 
