@@ -33,14 +33,14 @@
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/Fname"
+                android:id="@+id/Fname_R"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:ems="10"
                 android:hint="First Name"
                 android:inputType="textCapSentences"
-                android:singleLine="true"></EditText>
+                android:maxLines="1"></EditText>
 
         </android.support.design.widget.TextInputLayout>
 
@@ -51,7 +51,7 @@
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/Lname"
+                android:id="@+id/Lname_R"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -66,13 +66,13 @@
             android:layout_marginTop="5dp">
 
             <EditText
-                android:id="@+id/Email"
+                android:id="@+id/Uname_R"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
+                android:hint="Username"
+                android:inputType="textVisiblePassword"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
 
@@ -84,8 +84,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:backgroundTint="@android:color/holo_green_dark"
-            android:elevation="0dp"
             android:text="Next"
-            android:tooltipText="Click Here to Continue" />
+             />
     </LinearLayout>
 </RelativeLayout>
