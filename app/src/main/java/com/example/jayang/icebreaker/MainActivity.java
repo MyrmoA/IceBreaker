@@ -24,7 +24,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
      Button mlogin;
     TextView mTextView;
-    DatabaseReference ref;
+
     ArrayList<String> mlist;
 
     @Override
@@ -33,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mlogin = (Button)findViewById(R.id.login_button);
         mTextView =(TextView)findViewById(R.id.register_button);
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mlist = new ArrayList<>();
-         ref = database.getReference("Usernames");
+
 
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,26 +60,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot userSnapshot : dataSnapshot.getChildren()){
-
-                    String s = userSnapshot.getValue().toString();
-                    mlist.add(s);
-
-                }
-                if(mlist.contains("yjj781265")){
-                    Log.d("Icebreaker","username is used");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 }

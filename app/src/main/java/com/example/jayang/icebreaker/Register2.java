@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,7 +32,7 @@ public class Register2 extends AppCompatActivity {
     Button mButton ; // signup button
     Toolbar mToolbar;
     EditText email,password,cpassword;
-    String  userEmail, userPassword,userCpassword,firstname,lastname,username;
+    String  userEmail, userPassword,userCpassword,firstname,lastname,username,url;
     final String TAG ="IcebreakerApp" ;
 
     private FirebaseAuth mAuth;
@@ -53,6 +55,7 @@ public class Register2 extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email_R);
         password = (EditText) findViewById(R.id.password_R);
         cpassword = (EditText) findViewById(R.id.Cpassword_R);
+        url = "https://st3.depositphotos.com/1006318/13470/v/1600/depositphotos_134700318-stock-illustration-profile-icon-male-avatar-man.jpg";
 
 
 
@@ -63,6 +66,13 @@ public class Register2 extends AppCompatActivity {
             public void onClick(View view) {
                 attemptRegistration();
 
+            }
+        });
+        cpassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                attemptRegistration();
+                return false;
             }
         });
     }
@@ -164,7 +174,7 @@ public class Register2 extends AppCompatActivity {
                             FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                             String Uid = currentFirebaseUser.getUid();
 
-                            writeNewUser(Uid, muserName, memail,mfirstName,mlastName );
+                            writeNewUser(Uid, muserName, memail,mfirstName,mlastName,url);
                             addtoUsernameList(muserName);
                         }
                     }
@@ -173,10 +183,10 @@ public class Register2 extends AppCompatActivity {
 
     //write userdata info to the firebase user table/documents
     private void writeNewUser(String userId, String username, String email,String firstname,
-                              String lastname) {
+                              String lastname,String url) {
 
 
-        User user = new User(username,email,firstname,lastname);
+        User user = new User(username,email,firstname,lastname,url);
 
         mDatabase.child("Users").child(userId).setValue(user);
     }

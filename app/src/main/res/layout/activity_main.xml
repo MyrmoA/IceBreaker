@@ -60,7 +60,8 @@
                 android:background="@color/light_blue"
                 android:ems="10"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:imeActionLabel="Sign-in"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button
