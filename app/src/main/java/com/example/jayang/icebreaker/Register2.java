@@ -176,6 +176,10 @@ public class Register2 extends AppCompatActivity {
 
                             writeNewUser(Uid, muserName, memail,mfirstName,mlastName,url);
                             addtoUsernameList(muserName);
+                            finishAffinity();
+                            Intent intent = new Intent(getBaseContext(),MainActivity.class);
+                            startActivity(intent);
+
                         }
                     }
                 });
