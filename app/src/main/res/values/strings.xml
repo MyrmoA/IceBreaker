@@ -11,8 +11,12 @@
     <string name="error_invalid_password">Password too short(at least 6 characters)</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name ="error_field_nospace">No space in username</string>
+    <string name="error_field_nospace">No space in username</string>
     <string name="error_invalid_username">Username needs at least 3 characters</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_user_profile_page">UserProfilePage</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

@@ -2,8 +2,10 @@ package com.example.jayang.icebreaker;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import java.net.*;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,12 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class Register2 extends AppCompatActivity {
     Button mButton ; // signup button
@@ -37,6 +43,7 @@ public class Register2 extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private StorageReference mStorageRef;
 
 
 
@@ -48,6 +55,7 @@ public class Register2 extends AppCompatActivity {
         setContentView(R.layout.activity_register2);
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
  /*Layout Component*/
         mButton = (Button) findViewById(R.id.signup);
         mToolbar = (Toolbar) findViewById(R.id.toolbar2);
@@ -55,7 +63,21 @@ public class Register2 extends AppCompatActivity {
         email = (EditText) findViewById(R.id.email_R);
         password = (EditText) findViewById(R.id.password_R);
         cpassword = (EditText) findViewById(R.id.Cpassword_R);
-        url = "https://st3.depositphotos.com/1006318/13470/v/1600/depositphotos_134700318-stock-illustration-profile-icon-male-avatar-man.jpg";
+        mStorageRef.child("avatar/default.png").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                url = uri.toString();
+
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+            Log.d(TAG,e.getMessage());
+            }
+        });
+
+
 
 
 
@@ -175,7 +197,7 @@ public class Register2 extends AppCompatActivity {
                             String Uid = currentFirebaseUser.getUid();
 
                             writeNewUser(Uid, muserName, memail,mfirstName,mlastName,url);
-                            addtoUsernameList(muserName);
+                            addtoUsernameList(muserName,Uid);
                             finishAffinity();
                             Intent intent = new Intent(getBaseContext(),MainActivity.class);
                             startActivity(intent);
@@ -195,8 +217,8 @@ public class Register2 extends AppCompatActivity {
         mDatabase.child("Users").child(userId).setValue(user);
     }
 
-    private void addtoUsernameList(String mUsername){
-        mDatabase.child("Usernames").push().setValue(mUsername);
+    private void addtoUsernameList(String mUsername,String userId){
+        mDatabase.child("Usernames").child(userId).setValue(mUsername);
     }
 
 

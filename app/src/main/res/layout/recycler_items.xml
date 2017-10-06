@@ -7,9 +7,9 @@
               android:gravity="start"
               android:id="@+id/recycleritem"
               android:weightSum="1"
-    android:background="?android:attr/selectableItemBackground">
+              android:background="?android:attr/selectableItemBackground">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="50dp"

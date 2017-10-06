@@ -1,5 +1,6 @@
 package com.example.jayang.icebreaker;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -34,6 +35,11 @@ public class ViewHolder extends RecyclerView.ViewHolder{
                 TypedArray typedArray = itemView.getContext().obtainStyledAttributes(attrs);
                 int backgroundResource = typedArray.getResourceId(0, 0);
                 itemView.setBackgroundResource(backgroundResource);
+
+                Intent intent = new Intent(view.getContext(), UserProfilePage.class);
+                intent.putExtra("user_info",username.getText().toString());
+                view.getContext().startActivity(intent);
+
             }
         });
     }

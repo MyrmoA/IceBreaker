@@ -76,7 +76,7 @@ public class TwoFrag extends android.support.v4.app.Fragment{
 
 
 
-        Log.d("haha","on createView");
+
 
 
         //Convert xml to java view objext

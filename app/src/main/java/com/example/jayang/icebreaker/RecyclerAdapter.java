@@ -22,6 +22,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
     public RecyclerAdapter(ArrayList<User> userList, Context context) {
         mUserList = userList;
         mContext =context;
+
     }
 
     @Override
@@ -33,8 +34,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         User user = mUserList.get(position);
-        holder.fullname.setText("Name: "+ user.getFirstname()+" "+user.getLastname());
-        holder.username.setText("Username: "+user.getUsername());
+        holder.fullname.setText(user.getFirstname()+" "+user.getLastname());
+        holder.username.setText(user.getUsername());
         Picasso.with(mContext).load(user.getPhotourl()).into(holder.avatar);
     }
 
