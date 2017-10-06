@@ -35,7 +35,7 @@ public class ViewHolder extends RecyclerView.ViewHolder{
                 TypedArray typedArray = itemView.getContext().obtainStyledAttributes(attrs);
                 int backgroundResource = typedArray.getResourceId(0, 0);
                 itemView.setBackgroundResource(backgroundResource);
-
+                //Todo : pass the selected user Uid
                 Intent intent = new Intent(view.getContext(), UserProfilePage.class);
                 intent.putExtra("user_info",username.getText().toString());
                 view.getContext().startActivity(intent);

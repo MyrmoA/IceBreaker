@@ -25,7 +25,8 @@
             android:name=".Register2"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".HomePage"/>
-        <activity android:name=".UserProfilePage"
+        <activity
+            android:name=".UserProfilePage"
             android:parentActivityName=".HomePage">
         </activity>
     </application>

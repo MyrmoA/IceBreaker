@@ -60,15 +60,15 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/compareBtn"
         style="@android:style/Widget.Material.Light.Button.Toggle"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:background="@android:color/holo_red_light"
-        android:text="Compare"
-        android:layout_marginBottom="58dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="58dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Compare"/>
 
     <TextView
         android:id="@+id/email_tv"
