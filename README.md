@@ -1,5 +1,5 @@
 # IceBreaker
-The Social Mobile App that help you find  the common interest and topic with the strangers or friends around you. To help to break that awkward moment 
+The Social Mobile Networking Application that helps you find common interests and hobbies with newly made acquintances. The main focus of the application is to find topics to discuss with new friends and help break the ice in those akward moments.
 
 
-Developed Fall of 2017 - Florida Gulf Coast University
+Developed Fall of 2017-2018 at Florida Gulf Coast University
